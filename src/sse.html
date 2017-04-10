@@ -1,0 +1,186 @@
+<!--
+    Copyright (c) 2016 PointSource, LLC.
+	Code Enhanced by (c) 2017 Enrico Corona 
+	(https://github.com/arakno76)
+    MIT Licensed
+ -->
+<script type="text/javascript">
+RED.nodes.registerType('sse-en', {
+    icon: 'bridge-dash.png',
+    align: 'right',
+    category: 'output',
+    color: '#a6bbcf',
+    defaults: {
+        name: {
+            value: ""
+        },
+        path: {
+            value: "",
+            validate: RED.validators.regex(/(\/[a-z0-9]+){1,}/),
+            required: true
+        },
+        room: {
+            value: ""
+        },
+        heartbeat: {
+            value: 20000,
+            validate: RED.validators.number(),
+            required: true
+        },
+        retry: {
+            value: 1000,
+        },
+        retrySet:{
+            value: false
+        },
+        accesscontrol: {
+            value: ""
+        },
+        accessControlSet: {
+            value: false
+        }
+    },
+    inputs: 1,
+    outputs: 0,
+    label: function() {
+        return this.name || "ServerSentEvent";
+    },
+    oneditprepare: function() {
+        if (!this.accessControlSet) {
+            $(".node-input-accesscontrol").hide();
+        } else {
+            $("#isAllowAccessSelected").prop('checked', true);
+            $(".node-input-accesscontrol").val(this.accesscontrol);
+        }
+        if (!this.retrySet) {
+            $(".node-input-retry").hide();
+            $(".node-input-retry-scale").hide();
+        } else {
+            $("#isRetrySelected").prop('checked', true);
+            $(".node-input-retry").val(this.retry);
+        }
+        $('#isRetrySelected').click(function() {
+            if ($("#isRetrySelected").is(':checked')) { // checked
+                $(".node-input-retry").show();
+                $(".node-input-retry").text(this.retry);
+                $(".node-input-retry-scale").show();
+            } else {
+                $(".node-input-retry").hide();
+                $(".node-input-retry-scale").hide();
+            }
+        });
+        $('#isAllowAccessSelected').click(function() {
+            if ($("#isAllowAccessSelected").is(':checked')) { // checked
+                $(".node-input-accesscontrol").show();
+                $(".node-input-accesscontrol").text(this.accesscontrol);
+            } else {
+                $(".node-input-accesscontrol").hide();
+            }
+        });
+    },
+    oneditsave: function () {
+        this.retrySet = $("#isRetrySelected").is(':checked');
+        if(this.retrySet) {
+            try {
+                this.retry = Number($(".node-input-retry").val());
+            } catch (e) {
+                this.retry = 1000;
+            }
+        }
+        this.accessControlSet = $("#isAllowAccessSelected").is(':checked');
+        if(this.accessControlSet) {
+            this.accesscontrol = $(".node-input-accesscontrol").val();
+        } else {
+            this.accesscontrol = "";  
+        }
+    }
+});
+</script>
+<style>
+.node-input-retry {
+    margin-left: 110px;
+    margin-right: 10px;
+}
+
+.input-pop-up {
+    margin-top: 10px;
+}
+
+.node-input-accesscontrol {
+    margin-left: 110px;
+}
+</style>
+<script type="text/x-red" data-template-name="sse">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Server-Sent-Event">
+    </div>
+    <div class="form-row">
+        <label for="node-input-path"><i class="icon-tag"></i> Path</label>
+        <input type="text" id="node-input-path" placeholder="/sse">
+    </div>
+    <div class="form-row">
+        <label for="node-input-room"><i class="icon-tag"></i> Room</label>
+        <input type="text" id="node-input-room" placeholder="room1">
+    </div>
+    <div class="form-row">
+        <label for="node-input-heartbeat"><i class="icon-tag"></i> Heartbeat</label>
+        <input type="text" id="node-input-heartbeat" placeholder="20000">
+    </div>
+    <div class="form-row">
+        <label for="node-input-retry"><i class="icon-tag"></i> Retry</label>
+        <input type="checkbox" style="width: 20px;" id="isRetrySelected" />
+        <div class="input-pop-up form-row">
+            <input type="text" class="node-input-retry" placeholder="1000" , style="width:100px;">
+            <label class="node-input-retry-scale"> Milliseconds</label>
+        </div>
+    </div>
+    <div class="form-row">
+        <label for="node-input-accesscontrol" style="width: 250px;">
+            <i class="icon-tag"></i> Access-Control-Allow-Origin
+        </label>
+        <input type="checkbox" style="width: 20px;" id="isAllowAccessSelected" />
+        <div class="form-row input-pop-up">
+            <input type="text" class="node-input-accesscontrol" placeholder="http://example.com or *">
+        </div>
+    </div>
+    <div>
+    </div>
+</script>
+<script type="text/x-red" data-help-name="sse">
+    <p>This is a wrapper node around
+        <a href="https://www.npmjs.com/package/simple-sse">simple-sse</a> package. It will allow sending sever sent event to the client.
+        <br>
+        <ul>
+            <li>
+                Path : The base path that the will listen for incoming HTTP request. Can be any valid url path.</li>
+            <li>Room : Different rooms can be created to categorize different clients in order to be able to send a specific message to a group of clients.
+				<br>
+				Room name can even be set in the input message object, inside field <code>msg.room</code>.
+			</li>
+            <br>
+            <big>Note: </big> The url for a specific room will be "
+            <i>Path<big>/</big>Room</i>" for instance:
+            <i>http://example.com/sse/room1</i>
+            <br>
+            <br>
+            <li>Hearbeat: Heartbeat will be used to send custom messages to the client when no data is being sent. Default delay to send a heartbeat is <i>20000</i> milliseconds but can be customized.
+            </li>
+            <li>Retry: If selected will set the retry time for client at connection time.</li>
+            <li>AccessControlAllowOrigin: If could not connect using
+                <i>EventSource</i> due to access control allow origin header missing you can set the header here.</li>
+            <br>
+            <big>Note: </big>Make sure you are aware of security risk if you set the origin to "*".
+        </ul>
+        <br> Output of this nodes will be <code>msg.payload</code> as
+        <br>
+        <br>
+        <i>id: ClientID</i>
+        <br>
+        <i>data: <code>msg.payload</code></i>
+        <br>
+        <br> If in the input <code>msg.event</code> is set, will also output
+        <br>
+        <i>event: <code>msg.event</code></i>
+    </p>
+</script>

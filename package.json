@@ -1,0 +1,34 @@
+{
+  "name": "@ekaralis/node-red-contrib-sse-plus",
+  "version": "1.0.0",
+  "description": "Enhanced Server Sent Events node for NODE-RED. Based on PointSource/node-red-contrib-sse",
+  "main": "src/sse.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arakno76/sse-node-red.git"
+  },
+   "dependencies": {
+    "simple-sse": "0.0.3"
+  },
+  "keywords": [
+    "NODE-RED",
+    "contrib",
+    "Server",
+    "Sent",
+    "Events"
+  ],
+   "node-red": {
+    "nodes": {
+      "sse-en": "src/sse.js"
+    }
+},
+  "author": "Enrico Corona",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arakno76/sse-node-red/issues"
+  },
+  "homepage": "https://github.com/arakno76/sse-node-red#readme"
+}
