@@ -22,7 +22,7 @@
   ],
    "node-red": {
     "nodes": {
-      "sse-en": "src/sse.js"
+      "sse-plus": "src/sse.js"
     }
 },
   "author": "Enrico Corona",

@@ -108,5 +108,5 @@ module.exports = function(RED) {
         }
     }
 
-    RED.nodes.registerType("sse-en", CreateSSENode);
+    RED.nodes.registerType("sse-plus", CreateSSENode);
 }
