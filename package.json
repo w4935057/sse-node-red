@@ -1,6 +1,6 @@
 {
   "name": "@ekaralis/node-red-contrib-sse-plus",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Enhanced Server Sent Events node for NODE-RED. Based on PointSource/node-red-contrib-sse",
   "main": "src/sse.js",
   "scripts": {
