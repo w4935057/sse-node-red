@@ -4,11 +4,7 @@
 
 To install run: 
 
-`npm install node-red-contrib-sse-plus --save`
-
-Until the module is not registered on npm use the following to install:
-
-`npm install @ekaralis/node-red-contrib-sse-plus
+`npm install @ekaralis/node-red-contrib-sse-plus'
 
 ## Description
 
