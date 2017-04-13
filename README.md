@@ -4,7 +4,7 @@
 
 To install run: 
 
-`npm install @ekaralis/node-red-contrib-sse-plus'
+`npm install @ekaralis/node-red-contrib-sse-plus`
 
 ## Description
 
