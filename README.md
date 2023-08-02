@@ -4,7 +4,7 @@
 
 To install run: 
 
-`npm install @w4935057/node-red-contrib-sse-plus`
+`npm install @w4935057/node-red-contrib-sse-plus-proxy`
 
 ## Description
 
