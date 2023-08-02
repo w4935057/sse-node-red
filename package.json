@@ -15,9 +15,10 @@
     "proxy"
   ],
   "node-red": {
-    "nodes": {
-      "sse-plus-proxy": "src/sse.js"
-    },
+      "nodes": {
+         "sse-plus-proxy" : "src/sse.js"
+      }
+  },
   "author": "w4935057",
   "license": "MIT",
   "bugs": {
