@@ -108,5 +108,5 @@ module.exports = function(RED) {
         }
     }
 
-    RED.nodes.registerType("sse-plus", CreateSSENode);
+    RED.nodes.registerType("sse-plus-proxy", CreateSSENode);
 }
