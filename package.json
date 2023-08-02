@@ -1,34 +1,23 @@
 {
-  "name": "@ekaralis/node-red-contrib-sse-plus",
-  "version": "1.0.2",
-  "description": "Enhanced Server Sent Events node for NODE-RED. Based on PointSource/node-red-contrib-sse",
-  "main": "src/sse.js",
+  "name": "sse-node-red-plus-proxy",
+  "version": "1.0.0",
+  "description": "based on ekaralis/sse-node-red-plus. Added support for reverse proxy",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arakno76/sse-node-red.git"
-  },
-   "dependencies": {
-    "simple-sse": "0.0.3"
+    "url": "git+https://github.com/w4935057/sse-node-red.git"
   },
   "keywords": [
-    "NODE-RED",
-    "contrib",
-    "Server",
-    "Sent",
-    "Events"
+    "sse",
+    "proxy"
   ],
-   "node-red": {
-    "nodes": {
-      "sse-plus": "src/sse.js"
-    }
-},
-  "author": "Enrico Corona",
+  "author": "w4935057",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/arakno76/sse-node-red/issues"
+    "url": "https://github.com/w4935057/sse-node-red/issues"
   },
-  "homepage": "https://github.com/arakno76/sse-node-red#readme"
+  "homepage": "https://github.com/w4935057/sse-node-red#readme"
 }
