@@ -1,6 +1,6 @@
 {
   "name": "@w4935057/sse-node-red-plus-proxy",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "based on ekaralis/sse-node-red-plus. Added support for reverse proxy",
   "main": "src/sse.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/w4935057/sse-node-red.git"
   },
-   "dependencies": {
+  "dependencies": {
     "simple-sse": "0.0.3"
   },
   "keywords": [
@@ -18,9 +18,9 @@
     "proxy"
   ],
   "node-red": {
-      "nodes": {
-         "sse-plus-proxy" : "src/sse.js"
-      }
+    "nodes": {
+      "sse-plus-proxy": "src/sse.js"
+    }
   },
   "author": "w4935057",
   "license": "MIT",
