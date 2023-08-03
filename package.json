@@ -1,6 +1,6 @@
 {
   "name": "@w4935057/node-red-contrib-sse-plus-proxy",
-  "version": "1.0.7-2",
+  "version": "1.0.7-8",
   "description": "based on ekaralis/sse-node-red-plus. Added support for reverse proxy",
   "main": "src/sse.js",
   "scripts": {
