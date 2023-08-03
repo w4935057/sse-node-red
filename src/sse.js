@@ -23,6 +23,7 @@ module.exports = function(RED) {
      * @param {object} config Configuration passed in from Node-RED library
      */
     function CreateSSENode(config) {
+        console.log('CreateSSENode');
         // Do the initialization for Node-RED
         RED.nodes.createNode(this, config);
         var node = this;
@@ -44,7 +45,7 @@ module.exports = function(RED) {
             if (accessAllowControlOrigin) {
               res.setHeader('Access-Control-Allow-Origin', accessAllowControlOrigin)
             }
-            res.setHeader( 'X-Accel-Buffering:', 'no');
+            res.setHeader( 'X-Accel-Buffering', 'no');
             clientNums++;
             // create client sse
             var client = sse.add(req, res);
