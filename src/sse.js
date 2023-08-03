@@ -44,6 +44,7 @@ module.exports = function(RED) {
             if (accessAllowControlOrigin) {
               res.setHeader('Access-Control-Allow-Origin', accessAllowControlOrigin)
             }
+            res.setHeader( 'X-Accel-Buffering,: 'no');
             clientNums++;
             // create client sse
             var client = sse.add(req, res);
